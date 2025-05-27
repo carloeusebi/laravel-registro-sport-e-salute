@@ -45,6 +45,11 @@ final class RegistroSportESalute
 
     private string $orderBy = 'societa__codiceFiscale';
 
+    public function builder(): self
+    {
+        return $this;
+    }
+
     public function filterByDenominazione(?string $denominazione): self
     {
         if (is_string($denominazione)) {

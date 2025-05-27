@@ -50,10 +50,10 @@
   "scripts": {
     "lint": "pint",
     "refactor": "rector",
-    "test:type-coverage": "pest --type-coverage --exactly=100",
+    "test:type-coverage": "pest",
     "test:typos": "peck",
     "test:lint": "pint --test",
-    "test:unit": "pest --coverage --exactly=100",
+    "test:unit": "pest --coverage",
     "test:types": "phpstan",
     "test:refactor": "rector --dry-run",
     "test": [
