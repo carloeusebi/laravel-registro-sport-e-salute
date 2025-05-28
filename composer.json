@@ -1,6 +1,6 @@
 {
   "name": "carloeusebi/laravel-registro-sport-e-salute",
-  "description": "tb",
+  "description": "A Laravel package that provides a simple and elegant wrapper around the Italian \"Registro Sport e Salute\" API. This package allows you to search and retrieve information about sports organizations registered in the Italian Sports Registry. ",
   "keywords": [
     "php",
     "laravel",
@@ -21,7 +21,6 @@
   },
   "require-dev": {
     "laravel/pint": "^1.22.1",
-    "peckphp/peck": "^0.1.3",
     "pestphp/pest": "^4.0.0",
     "pestphp/pest-plugin-type-coverage": "^4.0.0",
     "phpstan/phpstan": "^2.1.16",
@@ -51,7 +50,6 @@
     "lint": "pint",
     "refactor": "rector",
     "test:type-coverage": "pest",
-    "test:typos": "peck",
     "test:lint": "pint --test",
     "test:unit": "pest --coverage",
     "test:types": "phpstan",
@@ -59,7 +57,6 @@
     "test": [
       "@test:lint",
       "@test:type-coverage",
-      "@test:typos",
       "@test:unit",
       "@test:types",
       "@test:refactor"

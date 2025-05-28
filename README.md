@@ -27,6 +27,7 @@ Please visit the original [https://registro.sportesalute.eu](https://registro.sp
     - [Basic Usage](#basic-usage)
     - [Filtering](#filtering)
     - [Pagination](#pagination)
+    - [Order](#order)
     - [Getting Organization Details](#getting-organization-details)
 - [Frontend Integration](#frontend-integration)
 - [Testing](#testing)
@@ -89,6 +90,8 @@ $organizations = RegistroSportESalute::builder()
     ->get();
 ```
 
+The ability to filter by other fields may come in future updates, or if you really really need it you can submit a PR.
+
 ### Pagination
 
 The API supports pagination:
@@ -108,6 +111,11 @@ $organizations = RegistroSportESalute::filterByDenominazione('Sport Club')
     ->pageSize(20)
     ->get();
 ```
+
+
+### Order
+
+Order feature is not present. If you need it please create an issue or submit a PR.
 
 ### Getting Organization Details
 
