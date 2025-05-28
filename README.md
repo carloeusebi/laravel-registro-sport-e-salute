@@ -84,7 +84,8 @@ $organizations = RegistroSportESalute::filterByDenominazione('Sport Club')->get(
 $organizations = RegistroSportESalute::filterByCodiceFiscale('12345678901')->get();
 
 // Chain filters
-$organizations = RegistroSportESalute::builder()
+//💡 Tip: the `builder` method is an eye candy for when you have multiple statements
+$organizations = RegistroSportESalute::builder() 
     ->filterByDenominazione('Sport Club')
     ->filterByCodiceFiscale('12345678901')
     ->get();
@@ -111,7 +112,6 @@ $organizations = RegistroSportESalute::filterByDenominazione('Sport Club')
     ->pageSize(20)
     ->get();
 ```
-
 
 ### Order
 

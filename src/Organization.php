@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CarloEusebi\RegistroSportESalute;
 
-use BladeUI\Icons\Components\Icon;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
@@ -249,29 +248,29 @@ final readonly class Organization implements Arrayable, JsonSerializable
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
-            'denominazione' => $this->societa__denominazione,
-            'id_pad' => $this->id_pad,
+            'id' => $this->getId(),
+            'denominazione' => $this->getDenominazione(),
+            'id_pad' => $this->getIdPad(),
             'presentazione_data' => $this->getPresentazioneData()->toISOString(),
-            'natura_giuridica' => $this->societa__natura_giuridica,
+            'natura_giuridica' => $this->getNaturaGiuridica(),
             'approvazione_data' => $this->getDataApprovazione()->toISOString(),
-            'codice_fiscale' => $this->societa__codiceFiscale,
+            'codice_fiscale' => $this->getCodiceFiscale(),
             'societa_icona_vcf' => $this->getSocietaIconaVcf(),
             'organismi_affiliazioni_attive' => $this->getOrganismiAffiliazioniAttive(),
-            'stato_istruttoria_descrizione' => $this->statoIstruttoria__descrizione,
-            'utenza' => $this->utenza,
-            'sede_legale_regione' => $this->societa__sedeLegale__regione__denominazione,
-            'sede_legale_comune' => $this->societa__sedeLegale__comune__denominazione,
-            'affiliazione_scaduta_organismo_icona' => $this->affiliazione_scaduta_organismo_icona,
-            'richiesta_integrazioni_prima_data' => $this->richiestaIntegrazioni_prima_data,
-            'richiesta_integrazioni_ultima_data' => $this->richiestaIntegrazioni_ultima_data,
-            'invio_integrazioni_prima_data' => $this->invioIntegrazioni_prima_data,
-            'invio_integrazioni_ultima_data' => $this->invioIntegrazioni_ultima_data,
-            'richiesta_aggiornamenti_ultima_data' => $this->richiestaAggiornamenti_ultima_data,
-            'richiesta_aggiornamenti_icona' => $this->richiestaAggiornamenti_icona,
-            'invio_aggiornamenti_ultima_data' => $this->invioAggiornamenti_ultima_data,
-            'tipo_istruttoria' => $this->tipoIstruttoria,
-            'stato_istruttoria_icona' => $this->statoIstruttoria_icona,
+            'stato_istruttoria_descrizione' => $this->getStatoIstruttoriaDescrizione(),
+            'utenza' => $this->getUtenza(),
+            'sede_legale_regione' => $this->getRegioneSedeLegale(),
+            'sede_legale_comune' => $this->getComuneSedeLegale(),
+            'affiliazione_scaduta_organismo_icona' => $this->getAffiliazioneSCadutaOrganismoIcona(),
+            'richiesta_integrazioni_prima_data' => $this->getRichiestaIntegrazioniPrimaData(),
+            'richiesta_integrazioni_ultima_data' => $this->getRichiestaAggiornamentiUltimaData(),
+            'invio_integrazioni_prima_data' => $this->getInvioIntegrazioniPrimaData(),
+            'invio_integrazioni_ultima_data' => $this->getInvioIntegrazioniUltimaData(),
+            'richiesta_aggiornamenti_ultima_data' => $this->getRichiestaIntegrazioniUltimaData(),
+            'richiesta_aggiornamenti_icona' => $this->getRichiestaAggiornamentiIcona(),
+            'invio_aggiornamenti_ultima_data' => $this->getInvioAggiornamentiUltimaData(),
+            'tipo_istruttoria' => $this->getTipoIstruttoria(),
+            'stato_istruttoria_icona' => $this->getStatoIstruttoriaIcona(),
         ];
     }
 }

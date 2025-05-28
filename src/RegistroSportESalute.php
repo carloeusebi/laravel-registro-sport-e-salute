@@ -68,19 +68,10 @@ final class RegistroSportESalute
         return $this;
     }
 
-    public function page(int $page): self
+    public function page(int $page = 1, int $pageSize = 10): self
     {
-        $this->start = ($page - 1) * $this->length;
-
-        return $this;
-    }
-
-    public function pageSize(int $length): self
-    {
-        $page = ($this->start / $length) + 1;
-        $this->length = $length;
-
-        $this->page($page);
+        $this->start = ($page - 1) * $pageSize;
+        $this->length = $pageSize;
 
         return $this;
     }
@@ -93,7 +84,7 @@ final class RegistroSportESalute
     public function get(): Collection
     {
         $key = 'registro-sport-e-salute.list.';
-        $key .= md5(json_encode([$this->filters, $this->start, $this->length, $this->orderBy], JSON_THROW_ON_ERROR));
+        $key .= md5((string) json_encode([$this->filters, $this->start, $this->length, $this->orderBy]));
 
         // @phpstan-ignore-next-line
         return Cache::remember($key, Carbon::now()->addMinutes(5), function () {
@@ -106,7 +97,7 @@ final class RegistroSportESalute
                     'order_by' => $this->orderBy,
                     ...$this->filters,
                 ])
-                ->throw()
+                ->throwUnlessStatus(200)
                 ->json();
 
             return collect($res['payload']['data'])
@@ -128,7 +119,7 @@ final class RegistroSportESalute
                 'chiamante' => 'registroPubblico_n',
             ])
 
-                ->throw()
+                ->throwUnlessStatus(200)
                 ->json();
 
             return Arr::mapWithKeys($res['payload']['corpo']['dati'], fn (array $dato) => [$dato['label'] => $dato['value']]);

@@ -12,6 +12,7 @@ return RectorConfig::configure()
     ])
     ->withSkip([
         AddOverrideAttributeToOverriddenMethodsRector::class,
+        \Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

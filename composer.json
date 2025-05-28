@@ -17,10 +17,12 @@
     "php": "^8.4.0",
     "illuminate/cache": "^12.16",
     "illuminate/http": "^12.15",
-    "illuminate/support": "^12.15"
+    "illuminate/support": "^12.15",
+    "illuminate/testing": "^12.16"
   },
   "require-dev": {
     "laravel/pint": "^1.22.1",
+    "orchestra/testbench": "^10.3",
     "pestphp/pest": "^4.0.0",
     "pestphp/pest-plugin-type-coverage": "^4.0.0",
     "phpstan/phpstan": "^2.1.16",
@@ -34,7 +36,10 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Tests\\": "tests/",
+      "Workbench\\App\\": "workbench/app/",
+      "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+      "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
     }
   },
   "minimum-stability": "dev",
@@ -51,7 +56,7 @@
     "refactor": "rector",
     "test:type-coverage": "pest",
     "test:lint": "pint --test",
-    "test:unit": "pest --coverage",
+    "test:unit": "pest --coverage --exactly=100",
     "test:types": "phpstan",
     "test:refactor": "rector --dry-run",
     "test": [
@@ -60,6 +65,18 @@
       "@test:unit",
       "@test:types",
       "@test:refactor"
+    ],
+    "post-autoload-dump": [
+      "@clear",
+      "@prepare"
+    ],
+    "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+    "prepare": "@php vendor/bin/testbench package:discover --ansi",
+    "build": "@php vendor/bin/testbench workbench:build --ansi",
+    "serve": [
+      "Composer\\Config::disableProcessTimeout",
+      "@build",
+      "@php vendor/bin/testbench serve --ansi"
     ]
   }
 }
