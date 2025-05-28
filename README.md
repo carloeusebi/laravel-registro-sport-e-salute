@@ -104,12 +104,12 @@ use CarloEusebi\RegistroSportESalute\Facades\RegistroSportESalute;
 $organizations = RegistroSportESalute::page(2)->get();
 
 // Set page size (default is 10)
-$organizations = RegistroSportESalute::pageSize(20)->get();
+$organizations = RegistroSportESalute::page(pageSize: 25)->get();
 
 // Chain with filters
-$organizations = RegistroSportESalute::filterByDenominazione('Sport Club')
-    ->page(2)
-    ->pageSize(20)
+$organizations = RegistroSportESalute::builder()
+    ->filterByDenominazione('Sport Club')
+    ->page(2, 25)
     ->get();
 ```
 
