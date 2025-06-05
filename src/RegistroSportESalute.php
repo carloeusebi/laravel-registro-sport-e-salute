@@ -32,7 +32,7 @@ use JsonException;
  *     },
  * }
  */
-final class RegistroSportESalute
+class RegistroSportESalute
 {
     private const string BASE_URL = 'https://registro.sportesalute.eu/api/istruttoria';
 

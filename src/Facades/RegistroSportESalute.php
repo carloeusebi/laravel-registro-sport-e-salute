@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Collection<int, Organization> get()
  * @method static array<string, int|string> getById(int $id)
  */
-final class RegistroSportESalute extends Facade
+class RegistroSportESalute extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
