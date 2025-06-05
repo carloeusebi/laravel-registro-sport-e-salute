@@ -15,9 +15,11 @@ use Illuminate\Support\Testing\Fakes\Fake;
 class RegistroSportESaluteFake extends RegistroSportESalute implements Fake
 {
     public function __construct(
-        private readonly int $count = 1,
+        int $count = 1,
         private readonly bool $shouldThrowHttpException = false,
-    ) {}
+    ) {
+        $this->count = $count;
+    }
 
     public function get(): Collection
     {

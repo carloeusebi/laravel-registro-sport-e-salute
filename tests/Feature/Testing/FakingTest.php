@@ -27,7 +27,8 @@ it('returns fake data on get', function (): void {
 test('returns correct amount of organizations', function (): void {
     RegistroSportESalute::fake(3);
 
-    expect(RegistroSportESalute::get())->toHaveCount(3);
+    expect(RegistroSportESalute::get())->toHaveCount(3)
+        ->and(RegistroSportESalute::getCount())->toBe(3);
 });
 
 test('get by id', function (): void {

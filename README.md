@@ -68,6 +68,8 @@ foreach ($organizations as $organization) {
     // Convert to array
     $organizationArray = $organization->toArray();
 }
+
+RegistroSportESalute::getCount() // The total number of matched records, useful for pagination
 ```
 
 ### Filtering

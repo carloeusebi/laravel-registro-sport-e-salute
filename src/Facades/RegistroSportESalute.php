@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \CarloEusebi\RegistroSportESalute\RegistroSportESalute page(int $page = 1, int $pageSize = 10)
  * @method static Collection<int, Organization> get()
  * @method static array<string, int|string> getById(int $id)
+ * @method static int getCount()
  */
 class RegistroSportESalute extends Facade
 {

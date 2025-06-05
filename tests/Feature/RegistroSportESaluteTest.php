@@ -11,7 +11,7 @@ describe('successes', function (): void {
 
     beforeEach(function (): void {
         Http::fake([
-            'https://registro.sportesalute.eu/api/istruttoria/lista*' => Http::response(['payload' => ['data' => []]]),
+            'https://registro.sportesalute.eu/api/istruttoria/lista*' => Http::response(['payload' => ['count' => 0, 'data' => []]]),
             'https://registro.sportesalute.eu/api/istruttoria/*/sidebar*' => Http::response(['payload' => ['corpo' => ['dati' => [['label' => 'test', 'value' => 'test']]]]]),
         ]);
     });
@@ -60,6 +60,16 @@ describe('successes', function (): void {
 
         Http::assertSentCount(2);
     });
+});
+
+test('count', function (): void {
+    Http::fake([
+        'https://registro.sportesalute.eu/api/istruttoria/lista*' => Http::response(['payload' => ['count' => 5, 'data' => []]]),
+    ]);
+
+    RegistroSportESalute::get();
+
+    expect(RegistroSportESalute::getCount())->toBe(5);
 });
 
 describe('exceptions', function (): void {

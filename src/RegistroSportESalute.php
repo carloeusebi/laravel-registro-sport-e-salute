@@ -45,6 +45,8 @@ class RegistroSportESalute
 
     private string $orderBy = 'societa__codiceFiscale';
 
+    public int $count = 0;
+
     public function builder(): self
     {
         return $this;
@@ -100,6 +102,8 @@ class RegistroSportESalute
                 ->throwUnlessStatus(200)
                 ->json();
 
+            $this->count = $res['payload']['count'];
+
             return collect($res['payload']['data'])
                 ->map(fn (array $organization): Organization => Organization::fromArray($organization));
         });
@@ -126,5 +130,10 @@ class RegistroSportESalute
 
             return Arr::mapWithKeys($res['payload']['corpo']['dati'], fn (array $dato) => [$dato['label'] => $dato['value']]);
         });
+    }
+
+    public function getCount(): int
+    {
+        return $this->count;
     }
 }
