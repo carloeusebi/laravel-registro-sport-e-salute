@@ -29,7 +29,7 @@ Please visit the original [https://registro.sportesalute.eu](https://registro.sp
     - [Pagination](#pagination)
     - [Order](#order)
     - [Getting Organization Details](#getting-organization-details)
-- [Frontend Integration](#frontend-integration)
+    - [Test](#faking)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -131,6 +131,19 @@ $details = RegistroSportESalute::getById(123);
 echo $details['Denominazione'];
 echo $details['Codice Fiscale'];
 // etc.
+```
+
+### Faking
+
+You can `fake` the facade so you can focus on testing your own code.
+
+```php
+use CarloEusebi\RegistroSportESalute\Facades\RegistroSportESalute;
+
+RegistroSportESalute::fake(
+   count: 2 // how may mock Organizations should return; will return one by default
+   shouldThrowHttpException: true, // it should simulate an HttpClientException
+);
 ```
 
 ## Testing

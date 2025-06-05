@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace CarloEusebi\RegistroSportESalute;
 
 use Carbon\Carbon;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use JsonException;
 
 /**
  * @phpstan-type OrganizationsData array{
@@ -79,7 +79,7 @@ class RegistroSportESalute
     /**
      * @return Collection<int, Organization>
      *
-     * @throws JsonException
+     * @throws RequestException
      */
     public function get(): Collection
     {
@@ -106,7 +106,9 @@ class RegistroSportESalute
     }
 
     /**
-     * @return array<string, int|string>
+     * @return array<string, int|string|null>
+     *
+     * @throws RequestException
      */
     public function getById(int $id): array
     {

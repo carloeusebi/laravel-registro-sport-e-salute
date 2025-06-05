@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CarloEusebi\RegistroSportESalute\Facades;
 
 use CarloEusebi\RegistroSportESalute\Organization;
+use CarloEusebi\RegistroSportESalute\Testing\Fakes\RegistroSportESaluteFake;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
@@ -25,5 +26,12 @@ class RegistroSportESalute extends Facade
     protected static function getFacadeAccessor(): string
     {
         return \CarloEusebi\RegistroSportESalute\RegistroSportESalute::class;
+    }
+
+    public static function fake(int $count = 1, bool $shouldThrowHttpException = false): RegistroSportESaluteFake
+    {
+        return tap(new RegistroSportESaluteFake($count, $shouldThrowHttpException), function ($fake): void {
+            static::swap($fake);
+        });
     }
 }
