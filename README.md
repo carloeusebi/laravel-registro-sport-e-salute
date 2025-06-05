@@ -29,7 +29,7 @@ Please visit the original [https://registro.sportesalute.eu](https://registro.sp
     - [Pagination](#pagination)
     - [Order](#order)
     - [Getting Organization Details](#getting-organization-details)
-    - [Test](#faking)
+    - [Faking](#faking)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
