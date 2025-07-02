@@ -5,6 +5,7 @@ namespace CarloEusebi\RegistroSportESalute\Testing\Fakes;
 use CarloEusebi\RegistroSportESalute\Factories\OrganizationFactory;
 use CarloEusebi\RegistroSportESalute\RegistroSportESalute;
 use Faker\Factory;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Testing\Fakes\Fake;
@@ -34,7 +35,12 @@ class RegistroSportESaluteFake extends RegistroSportESalute implements Fake
         return collect(array_fill(0, $this->count, OrganizationFactory::create()));
     }
 
-    public function getById(int $id): array
+    /**
+     * @return array<string, int|string|null>|null
+     *
+     * @throws RequestException
+     */
+    public function getById(int $id): ?array
     {
         if ($this->shouldThrowHttpException) {
             Http::fake([

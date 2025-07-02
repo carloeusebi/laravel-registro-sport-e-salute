@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Http;
  * @phpstan-type OrganizationDetailData array{
  *     stato: int,
  *     errori: list<mixed>,
- *     payload: array{
- *      testata: array<string, string>,
- *      immagine: array<string, string>,
- *      corpo: array{
+ *     payload?: array{
+ *      testata?: array<string, string>,
+ *      immagine?: array<string, string>,
+ *      corpo?: array{
  *          dati: list<array{ label: string, tipo: 'input'|'textarea'|'number', value: string|int }>
  *      }
  *     },
@@ -110,11 +110,11 @@ class RegistroSportESalute
     }
 
     /**
-     * @return array<string, int|string|null>
+     * @return array<string, int|string|null>|null
      *
      * @throws RequestException
      */
-    public function getById(int $id): array
+    public function getById(int $id): ?array
     {
         $key = "registro-sport-e-salute.detail.$id";
 
@@ -127,6 +127,10 @@ class RegistroSportESalute
 
                 ->throwUnlessStatus(200)
                 ->json();
+
+            if (! isset($res['payload']) || empty($res['payload'])) {
+                return null;
+            }
 
             return Arr::mapWithKeys($res['payload']['corpo']['dati'], fn (array $dato) => [$dato['label'] => $dato['value']]);
         });

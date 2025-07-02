@@ -72,6 +72,24 @@ test('count', function (): void {
     expect(RegistroSportESalute::getCount())->toBe(5);
 });
 
+it('handles 404 on get by id', function (): void {
+    Http::fake([
+        'https://registro.sportesalute.eu/api/istruttoria/*/sidebar*' => Http::response([
+            'stato' => 0,
+            'payload' => [],
+            'errori' => [
+                0 => [
+                    'codice' => '404',
+                    'campo' => '',
+                    'messaggio' => 'Non trovato',
+                ],
+            ],
+        ]),
+    ]);
+
+    expect(RegistroSportESalute::getById(1))->toBeNull();
+});
+
 describe('exceptions', function (): void {
     beforeEach(function (): void {
         Http::fake([
