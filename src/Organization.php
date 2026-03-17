@@ -93,7 +93,7 @@ final readonly class Organization implements Arrayable, JsonSerializable
 
     public function getSocietaIconaVcf(): string
     {
-        return $this->societa__iconaVcf !== null && $this->societa__iconaVcf !== '' && $this->societa__iconaVcf !== '0' ? self::BASE_URL.$this->societa__iconaVcf : '';
+        return in_array($this->societa__iconaVcf, [null, '', '0'], true) ? '' : self::BASE_URL.$this->societa__iconaVcf;
     }
 
     /**

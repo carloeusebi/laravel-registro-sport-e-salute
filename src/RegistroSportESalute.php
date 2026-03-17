@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Http;
  *     payload?: array{
  *      testata?: array<string, string>,
  *      immagine?: array<string, string>,
- *      corpo?: array{
+ *      corpo: array{
  *          dati: list<array{ label: string, tipo: 'input'|'textarea'|'number', value: string|int }>
  *      }
  *     },
@@ -99,7 +99,7 @@ class RegistroSportESalute
                     'order_by' => $this->orderBy,
                     ...$this->filters,
                 ])
-                ->throwUnlessStatus(200)
+                ->throwUnlessStatus(200) // @phpstan-ignore-line method.notFound
                 ->json();
 
             $this->count = $res['payload']['count'];
@@ -116,23 +116,23 @@ class RegistroSportESalute
      */
     public function getById(int $id): ?array
     {
-        $key = "registro-sport-e-salute.detail.$id";
+        $key = 'registro-sport-e-salute.detail.'.$id;
 
         // @phpstan-ignore-next-line
         return Cache::remember($key, Carbon::now()->addMinutes(5), function () use ($id) {
             /** @var OrganizationDetailData $res */
-            $res = Http::get(self::BASE_URL."/$id/sidebar", [
+            $res = Http::get(self::BASE_URL.sprintf('/%d/sidebar', $id), [
                 'chiamante' => 'registroPubblico_n',
             ])
 
-                ->throwUnlessStatus(200)
+                ->throwUnlessStatus(200) // @phpstan-ignore-line method.notFound
                 ->json();
 
-            if (! isset($res['payload']) || empty($res['payload'])) {
+            if (empty($res['payload'])) {
                 return null;
             }
 
-            return Arr::mapWithKeys($res['payload']['corpo']['dati'], fn (array $dato) => [$dato['label'] => $dato['value']]);
+            return Arr::mapWithKeys($res['payload']['corpo']['dati'], fn (array $dato): array => [$dato['label'] => $dato['value']]);
         });
     }
 

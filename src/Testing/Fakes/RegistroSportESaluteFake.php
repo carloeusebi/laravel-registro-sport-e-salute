@@ -64,7 +64,7 @@ class RegistroSportESaluteFake extends RegistroSportESalute implements Fake
             "Nr. attività sportive organizzate nell'ultimo anno" => $faker->numberBetween(0, 20),
             "Nr. partecipazioni attività sportive nell'ultimo anno" => $faker->numberBetween(0, 1000),
             "Nr. attività didattiche organizzate nell'ultimo anno" => $faker->numberBetween(0, 10),
-            'Nr. partecipazioni attività didattiche' => $faker->optional(0.7, null)->numberBetween(0, 500),
+            'Nr. partecipazioni attività didattiche' => $faker->optional(0.7)->numberBetween(0, 500),
             "Nr. attività formative organizzate nell'ultimo anno" => $faker->numberBetween(0, 5),
             'Nr. tesserati attivi' => $faker->numberBetween(10, 2000),
             'Personalità Giuridica' => 'Società a Responsabilità Limitata',
